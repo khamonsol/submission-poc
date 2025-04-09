@@ -4,7 +4,7 @@ import { Upload } from 'lucide-react';
 import Papa from 'papaparse';
 import { useSetAtom } from 'jotai';
 import { csvDataAtom, columnsAtom, CsvData } from '@/lib/atoms';
-import { Card } from '@/components/ui/card';
+import { Card } from '@/component/ui/card';
 
 export function CsvUpload() {
   const setCsvData = useSetAtom(csvDataAtom);

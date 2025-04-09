@@ -1,8 +1,8 @@
-import { CsvUpload } from '@/components/csv-upload';
-import { CsvTable } from '@/components/csv-table';
-import { ControlPanel } from '@/components/control-panel';
+import { CsvUpload } from '@/component/csv-upload';
+import { CsvTable } from '@/component/csv-table';
+import { ControlPanel } from '@/component/control-panel';
 
-function App() {
+function Submission() {
   return (
     <div className="container mx-auto py-8 space-y-8">
       <div className="max-w-6xl mx-auto">
@@ -15,4 +15,4 @@ function App() {
   );
 }
 
-export default App;
+export default Submission;

@@ -9,37 +9,42 @@ export default [{
   input: 'src/beyond-submission.tsx',
   output: {
     file: 'dist/beyond-submission.js',
+    inlineDynamicImports: true,
     format: 'system',
     sourcemap: true,
     globals: {
       'react': 'React',
       'react-dom': 'ReactDOM',
-      'single-spa-react': 'singleSpaReact',
-      '@radix-ui/react-icons': 'RadixUIReactIcons',
-      '@radix-ui/react-slot': 'RadixUIReactSlot'
+
     }
   },
   external: [
     'react',
     'react-dom',
-    'single-spa-react',
-    '@radix-ui/react-icons',
-    '@radix-ui/react-slot',
-    /^@radix-ui\/.*/,
-    'date-fns',
-    'papaparse',
-    '@tanstack/react-table'
+    '@beyond/layout',
+    'stream',
+    'util',
   ],
   plugins: [
     nodeResolve({
-      extensions: ['.js', '.jsx', '.ts', '.tsx']
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      browser: true, // Ensure browser-compatible versions are used
+      preferBuiltins: false // Prefer browser-compatible versions over Node built-ins
     }),
     replace({
       'process.env.NODE_ENV': JSON.stringify('development'),
       preventAssignment: true,
-      'use client': ''
+      'use client': '',
+      global: 'globalThis',
+      'process.browser': true,
+      'Buffer.isBuffer': 'false'
     }),
-    commonjs(),
+    commonjs({
+      // Ensure proper handling of CommonJS modules
+      transformMixedEsModules: true,
+      // Add browser-compatible versions of Node.js built-ins
+      include: /node_modules/
+    }),
     typescript({
       tsconfig: './tsconfig.app.json',
       include: ['src/**/*'],

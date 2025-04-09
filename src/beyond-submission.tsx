@@ -1,24 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import singleSpaReact from 'single-spa-react';
-import App from './App';
-import './index.css';
+import React from 'react'
+import ReactDOMClient from 'react-dom/client'
 
-const lifecycles = singleSpaReact({
+import singleSpaReact from 'single-spa-react'
+import Root from './root.component'
+import { GlobalError } from '@beyond/layout'
+import './index.css'
+
+export const { bootstrap, mount, unmount } = singleSpaReact({
   React,
-  ReactDOM,
-  rootComponent: App,
-  errorBoundary(err: Error, info: React.ErrorInfo) {
-    return (
-      <div className="error-boundary p-4 bg-destructive text-destructive-foreground rounded-md">
-        <h1 className="text-xl font-bold mb-2">Error</h1>
-        <p className="mb-2">{err.message}</p>
-        <pre className="text-sm overflow-auto">
-          {info.componentStack}
-        </pre>
-      </div>
-    );
-  },
-});
+  //@ts-expect-error because the linter told me to
+  ReactDOMClient,
+  rootComponent: Root,
+  errorBoundary(err: Error, info: React.ErrorInfo, props: any) {
+    console.log(`Error: ${err}`)
+    console.log(`Info: ${info}`)
+    console.log(`Props: ${props}`)
 
-export const { bootstrap, mount, unmount } = lifecycles;
+    return <GlobalError errorMessage={`${err}`} info={`${info}`} />
+  },
+})
