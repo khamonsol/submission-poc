@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@beyond/submission Module</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50">
+    <div class="min-h-screen flex items-center justify-center p-4">
+      <div class="max-w-2xl w-full bg-white rounded-lg shadow-lg p-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">@beyond/submission</h1>
+        <div class="prose prose-slate">
+          <p class="text-gray-600 mb-6">
+            This is a micro-frontend module that needs to be loaded into a Single-SPA application.
+          </p>
+          
+          <h2 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Integration Steps</h2>
+          
+          <div class="bg-gray-50 rounded-md p-4 mb-6">
+            <p class="text-sm text-gray-600 mb-2">1. Add the module to your import map:</p>
+            <pre class="bg-gray-900 text-gray-100 rounded-md p-4 overflow-x-auto"><code>{
+  "imports": {
+    "@beyond/submission": "http://localhost:3000/beyond-submission.js"
+  }
+}</code></pre>
+          </div>
+
+          <div class="bg-gray-50 rounded-md p-4 mb-6">
+            <p class="text-sm text-gray-600 mb-2">2. Register the application in your Single-SPA root config:</p>
+            <pre class="bg-gray-900 text-gray-100 rounded-md p-4 overflow-x-auto"><code>registerApplication({
+  name: "@beyond/submission",
+  app: () => System.import("@beyond/submission"),
+  activeWhen: ["/submission"]
+});</code></pre>
+          </div>
+
+          <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-md">
+            <h3 class="text-lg font-medium text-blue-900 mb-2">Development</h3>
+            <p class="text-blue-700">
+              The module is being served at: <code class="bg-blue-100 px-2 py-1 rounded">http://localhost:3000/beyond-submission.js</code>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
