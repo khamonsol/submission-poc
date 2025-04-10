@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from '@/shared/utils'
 
 export interface DrawerProps extends React.HTMLAttributes<HTMLDivElement> {
   open?: boolean;

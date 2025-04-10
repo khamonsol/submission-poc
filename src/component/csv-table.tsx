@@ -5,7 +5,7 @@ import {
   createColumnHelper,
 } from '@tanstack/react-table';
 import { useAtomValue } from 'jotai';
-import { csvDataAtom, columnsAtom, CsvData } from '@/lib/atoms';
+
 import {
   Table,
   TableBody,
@@ -14,6 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/component/ui/table';
+import { columnsAtom, CsvData, csvDataAtom } from '@/shared/atoms/fileData'
 
 export function CsvTable() {
   const data = useAtomValue(csvDataAtom);

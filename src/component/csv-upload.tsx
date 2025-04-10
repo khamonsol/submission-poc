@@ -3,8 +3,8 @@ import { useDropzone } from 'react-dropzone';
 import { Upload } from 'lucide-react';
 import Papa from 'papaparse';
 import { useSetAtom } from 'jotai';
-import { csvDataAtom, columnsAtom, CsvData } from '@/lib/atoms';
 import { Card } from '@/component/ui/card';
+import { columnsAtom, CsvData, csvDataAtom } from '@/shared/atoms/fileData'
 
 export function CsvUpload() {
   const setCsvData = useSetAtom(csvDataAtom);

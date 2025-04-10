@@ -3234,6 +3234,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.72.2":
+  version: 5.72.2
+  resolution: "@tanstack/query-core@npm:5.72.2"
+  checksum: 10c0/b1e4670c327a9f7e4892b5eb0c423ae230e440b30b749796595ecd7e19a683f613dd94e81fa97e420d765d2325493f5a0dfe3f6fe2ed860c2522c52a281c3e03
+  languageName: node
+  linkType: hard
+
 "@tanstack/react-query@npm:^4.36.1":
   version: 4.36.1
   resolution: "@tanstack/react-query@npm:4.36.1"
@@ -3250,6 +3257,17 @@ __metadata:
     react-native:
       optional: true
   checksum: 10c0/15d9c98269d52fbdd49f4eb4b077b5d70346f904ea2ae51fd0400949d731afde658919a1143dd849fb50d4c5b6d0ab072e7b313a098ef316dd1c24089653f626
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.72.2":
+  version: 5.72.2
+  resolution: "@tanstack/react-query@npm:5.72.2"
+  dependencies:
+    "@tanstack/query-core": "npm:5.72.2"
+  peerDependencies:
+    react: ^18 || ^19
+  checksum: 10c0/4d0e3252aca29c9e59f5d023250b8f1524a5388f400f1c4fd2aa8bdbd971a5a424e53dd8c48b11b252ff1892fab982d144fec3436d529f47373a2cfbdd5e9548
   languageName: node
   linkType: hard
 
@@ -3926,6 +3944,7 @@ __metadata:
     "@rollup/plugin-node-resolve": "npm:^15.2.3"
     "@rollup/plugin-replace": "npm:^5.0.5"
     "@rollup/plugin-typescript": "npm:^11.1.6"
+    "@tanstack/react-query": "npm:^5.72.2"
     "@tanstack/react-table": "npm:^8.13.2"
     "@types/cors": "npm:^2"
     "@types/node": "npm:^22.7.3"
@@ -3948,7 +3967,8 @@ __metadata:
     express: "npm:^4.18.3"
     globals: "npm:^15.9.0"
     input-otp: "npm:^1.2.4"
-    jotai: "npm:^2.7.1"
+    jotai: "npm:^2.12.2"
+    jotai-tanstack-query: "npm:^0.9.0"
     lucide-react: "npm:^0.446.0"
     next-themes: "npm:^0.3.0"
     papaparse: "npm:^5.4.1"
@@ -6008,7 +6028,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.7.1":
+"jotai-tanstack-query@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "jotai-tanstack-query@npm:0.9.0"
+  peerDependencies:
+    "@tanstack/query-core": "*"
+    jotai: ">=2.0.0"
+  checksum: 10c0/5bacdf976947b219f75c9de00eebbc8b8dd4ff949f386cf8ca16d0c581d743d1280979d5ff19e4f95ea63cef8a19c1c4276ae012c8b59febec6800107583d46a
+  languageName: node
+  linkType: hard
+
+"jotai@npm:^2.12.2":
   version: 2.12.2
   resolution: "jotai@npm:2.12.2"
   peerDependencies:
