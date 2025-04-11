@@ -22,8 +22,10 @@
     "declaration": true,
     "declarationDir": "./dist/types",
     "sourceMap": true,
+    "inlineSources": true,
     "types": ["node"]
   },
-  "include": ["src", "src/types"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/types/**/*.d.ts"],
+  "exclude": ["**/*.css", "**/*.scss"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

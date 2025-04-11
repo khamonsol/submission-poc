@@ -29,9 +29,14 @@ The following atoms will validate the csv headers are correct for the selected d
 
  */
 function compareArraysIgnoreCaseAndOrder(
-  expected: string[],
-  actual: string[]
+  expected: string[] | undefined,
+  actual: string[] | undefined
 ): string {
+  // Handle undefined arrays
+  if (!expected || !actual) {
+    return expected ? "CSV headers are missing" : "No expected headers found for this ISO/product combination";
+  }
+  
   const normalize = (arr: string[]): Set<string> =>
     new Set(arr.map((s) => s.toLowerCase()));
 
@@ -69,17 +74,30 @@ const expected: Record<string, string[]> = {
   'NEISOVIRTUAL': ['node', 'node_id', 'he', 'tranche', 'mw', 'price']
 }
 
-const validateCSVHeaders = atom((get) => {
+export const validateCSVHeaders = atom((get) => {
   const selectedIso = get(selectedIsoAtom);
   const selectedProduct = get(selectedProductAtom);
-  const columns = get(columnsAtom)
+  const columns = get(columnsAtom);
   const csvData = get(csvDataAtom);
 
-  if (!csvData) return '' //nothing to look at yet
-  const product = (selectedProduct.includes('Virtual'))?'VIRTUAL':'SPREAD'
-  const key = `${selectedIso}:${product}`
-  const expectedColumns = expected[key]
-  return compareArraysIgnoreCaseAndOrder(expectedColumns, columns)
+  if (!csvData || csvData.length === 0 || !columns || columns.length === 0) return '';
+  
+  // Only proceed if both ISO and product are selected
+  if (!selectedIso || !selectedProduct) {
+    return "Please select an ISO and product first";
+  }
+  
+  const product = selectedProduct.includes('Virtual') ? 'VIRTUAL' : 'SPREAD';
+  const key = `${selectedIso}${product}`;
+  const expectedColumns = expected[key];
+  
+  // Check if we have expectations for this combination
+  if (!expectedColumns) {
+    console.warn(`No expected columns found for key: ${key}`);
+    return `No validation rules found for ${selectedIso} ${selectedProduct}`;
+  }
+  
+  return compareArraysIgnoreCaseAndOrder(expectedColumns, columns);
 })
 
 

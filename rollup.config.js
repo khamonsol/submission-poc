@@ -47,9 +47,11 @@ export default [{
     }),
     typescript({
       tsconfig: './tsconfig.app.json',
-      include: ['src/**/*'],
-      exclude: ['node_modules', 'dist'],
-}),
+      include: ['src/**/*.ts', 'src/**/*.tsx'],
+      exclude: ['node_modules', 'dist', '**/*.css', '**/*.scss'],
+      sourceMap: !production,
+      inlineSources: !production
+    }),
     babel({
       babelHelpers: 'runtime',
       exclude: 'node_modules/**',
@@ -71,7 +73,8 @@ export default [{
     input: 'src/beyond-submission-menus.ts',
     output: {
       file: 'dist/beyond-submission-menus.js',
-      format: 'system'
+      format: 'system',
+      sourcemap: !production
     },
     plugins: [
       nodeResolve({
@@ -85,8 +88,10 @@ export default [{
       commonjs(),
       typescript({
         tsconfig: './tsconfig.app.json',
-        include: ['src/**/*'],
-        exclude: ['node_modules', 'dist']
+        include: ['src/**/*.ts', 'src/**/*.tsx'],
+        exclude: ['node_modules', 'dist', '**/*.css', '**/*.scss'],
+        sourceMap: !production,
+        inlineSources: !production
       }),
       babel({
         babelHelpers: 'runtime',
