@@ -1292,6 +1292,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@beyond/api@npm:^0.0.13":
+  version: 0.0.13
+  resolution: "@beyond/api@npm:0.0.13"
+  dependencies:
+    "@types/jest": "npm:^27.0.1"
+    "@types/systemjs": "npm:^6.1.1"
+    "@types/webpack-env": "npm:^1.16.2"
+    axios: "npm:^1.3.4"
+    date-fns: "npm:^2.29.3"
+    single-spa: "npm:6"
+  checksum: 10c0/9cb3635fd549117445137a42e975dabfc608a67434e2f177255061442ce9f01a76b79f0e12ef339c3e82bc47bd1e84d4681443180b7b06fbef7f8476cd2b7f1f
+  languageName: node
+  linkType: hard
+
 "@beyond/layout@npm:^1.0.11, @beyond/layout@npm:^1.0.2":
   version: 1.0.11
   resolution: "@beyond/layout@npm:1.0.11"
@@ -3907,6 +3921,7 @@ __metadata:
     "@babel/preset-react": "npm:^7.23.3"
     "@babel/preset-typescript": "npm:^7.23.3"
     "@babel/runtime": "npm:^7.24.0"
+    "@beyond/api": "npm:^0.0.13"
     "@beyond/layout": "npm:^1.0.11"
     "@beyond/storage": "npm:^0.0.18"
     "@eslint/js": "npm:^9.11.1"

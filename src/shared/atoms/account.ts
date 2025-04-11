@@ -1,7 +1,7 @@
 import { atomWithObservable, unwrap } from 'jotai/utils'
 import { loggedInUser$ } from '@beyond/storage'
 import { Atom, atom, WritableAtom } from 'jotai'
-import { fetchAccounts, UploaderInfo } from '@/shared/accountApi'
+import { fetchAccounts, UploaderInfo } from '@/shared/api/accountApi'
 import { atomWithQuery } from 'jotai-tanstack-query'
 import { selectedIsoAtom } from '@/shared/atoms/iso'
 

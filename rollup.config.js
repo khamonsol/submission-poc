@@ -4,14 +4,14 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
-
+const production = !process.env.ROLLUP_WATCH;
 export default [{
   input: 'src/beyond-submission.tsx',
   output: {
     file: 'dist/beyond-submission.js',
     inlineDynamicImports: true,
     format: 'system',
-    sourcemap: true,
+    sourcemap: !production,
     globals: {
       'react': 'React',
       'react-dom': 'ReactDOM',
@@ -21,7 +21,7 @@ export default [{
   external: [
     'react',
     'react-dom',
-    '@beyond/layout',
+    /^@beyond\//,
     'stream',
     'util',
   ],
@@ -48,8 +48,8 @@ export default [{
     typescript({
       tsconfig: './tsconfig.app.json',
       include: ['src/**/*'],
-      exclude: ['node_modules', 'dist']
-    }),
+      exclude: ['node_modules', 'dist'],
+}),
     babel({
       babelHelpers: 'runtime',
       exclude: 'node_modules/**',
