@@ -1,6 +1,6 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@/component/ui/popover'
 import { Button } from '@/component/ui/button'
-import { cn } from '@/shared/utils'
+import { cn } from '@/shared/util/utils'
 import { CalendarIcon } from 'lucide-react'
 import { format, startOfToday } from 'date-fns'
 import { Calendar } from '@/component/ui/calendar'
