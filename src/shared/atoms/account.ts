@@ -31,7 +31,7 @@ const uploaderInfoAsyncAtom = atom(async () => {
   return res
 })
 //Unwrap the async atom so that we don't have to deal with the Promise downstream
-const uploaderInfoAtom = unwrap(uploaderInfoAsyncAtom)
+const uploaderInfoAtom = unwrap(uploaderInfoAsyncAtom, () => [])
 
 //Build appropriate options list based on iso selection
 export const accountOptionsAtom: Atom<UploaderInfo[]> = atom((get) => {
@@ -62,7 +62,7 @@ export const selectedAccountAtom =
       // @ts-expect-error the linter told me to
       const uis = get(accountOptionsAtom)
       if (uis.length === 0) {
-        return 'No account available'
+        return '' // Return empty string instead of a message during loading
       }
       if (uis.length === 1) {
         return uis[0].asset_owner
