@@ -1,12 +1,12 @@
 import { Button } from '@/component/ui/button';
-import { Send } from 'lucide-react';
-import { useAtomValue } from 'jotai'
+import { Send, RefreshCw } from 'lucide-react';
+import { useAtomValue, useSetAtom } from 'jotai'
 import { canSubmitAtom, validateCSVHeaders } from '@/shared/atoms/validation'
 import { AccountSelector } from '@/component/AccountSelector/AccountSelector'
 import { DateSelector } from '@/component/DateSelector/DateSelector'
 import { IsoSelector } from '@/component/IsoSelector/IsoSelector'
 import { ProductSelector } from '@/component/ProductSelector/ProductSelector'
-import { apiFilePayloadAtom } from '@/shared/atoms/fileData'
+import { apiFilePayloadAtom, csvDataAtom, columnsAtom } from '@/shared/atoms/fileData'
 import { selectedIsoAtom } from '@/shared/atoms/iso'
 import { selectedProductAtom } from '@/shared/atoms/products'
 import { selectedAccountAtom } from '@/shared/atoms/account'
@@ -58,9 +58,41 @@ function SubmitButton() {
   )
 }
 
+function ClearButton() {
+  const setSelectedIso = useSetAtom(selectedIsoAtom);
+  const setSelectedProduct = useSetAtom(selectedProductAtom);
+  const setSelectedAccount = useSetAtom(selectedAccountAtom);
+  const setTradeDate = useSetAtom(tradeDateAtom);
+  const setCsvData = useSetAtom(csvDataAtom);
+  const setColumns = useSetAtom(columnsAtom);
+
+  const handleClear = () => {
+    // Reset all form elements
+    setSelectedIso('');
+    setSelectedProduct('');
+    setSelectedAccount('');
+    setTradeDate(null);
+    setCsvData([]);
+    setColumns([]);
+  };
+
+  return (
+    <>
+      <label className="text-sm font-medium">&nbsp;</label>
+      <Button
+        onClick={handleClear}
+        variant="outline"
+        className="border-gray-300 hover:bg-gray-100"
+      >
+        <RefreshCw className="w-4 h-4 mr-2" />
+        Clear All
+      </Button>
+    </>
+  )
+}
+
 //This really should be a form, but I don't have time right now
 export function ControlPanel() {
-
   return (
     <div className="flex flex-wrap gap-4 mb-8 items-end">
       <div className="flex flex-col gap-2">
@@ -77,6 +109,9 @@ export function ControlPanel() {
       </div>
       <div className="flex flex-col gap-2">
         <SubmitButton />
+      </div>
+      <div className="flex flex-col gap-2">
+        <ClearButton />
       </div>
     </div>
   );
