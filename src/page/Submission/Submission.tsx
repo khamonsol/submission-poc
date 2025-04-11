@@ -1,7 +1,7 @@
 import { CsvUpload } from '@/component/csv-upload';
 import { CsvTable } from '@/component/csv-table';
 import { ControlPanel } from '@/component/control-panel';
-import { ValidationIndicator } from '@/component/validation-indicator';
+import { ValidationIndicator } from '@/component/ValidationIndicator/ValidationIndicator';
 import { useAtomValue } from 'jotai'
 import { userIdAtom } from '@/shared/atoms/account'
 
