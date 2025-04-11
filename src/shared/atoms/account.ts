@@ -30,6 +30,20 @@ const uploaderInfoAsyncAtom = atom(async () => {
   const res: UploaderInfo[] = await fetchAccounts()
   return res
 })
+
+// Atom to track if accounts are still loading from API
+export const isAccountsLoadingAtom = atom((get) => {
+  // We can use the primitive value of uploaderInfoAsyncAtom to see if it's still loading
+  try {
+    // This will throw if the promise is not resolved yet
+    const _ = get(uploaderInfoAsyncAtom)
+    return false
+  } catch (e) {
+    // If it throws, the accounts are still loading
+    return true
+  }
+})
+
 //Unwrap the async atom so that we don't have to deal with the Promise downstream
 const uploaderInfoAtom = unwrap(uploaderInfoAsyncAtom, () => [])
 
