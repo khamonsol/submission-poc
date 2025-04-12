@@ -89,3 +89,22 @@ export const selectedAccountAtom =
       set(baseSelectedAccountAtom, newVal)
     },
   )
+
+// Atom that derives the trader name from the selected account
+export const selectedTraderNameAtom = atom((get) => {
+  const selectedAccount = get(selectedAccountAtom)
+  const accountOptions = get(accountOptionsAtom)
+  
+  if (!selectedAccount) return ''
+  
+  // Find account with matching asset_owner
+  const account = accountOptions.find(acc => acc.asset_owner === selectedAccount)
+  
+  // If account found and has trader name, return it
+  if (account?.trader) {
+    return account.trader
+  }
+  
+  // No trader name found - this would throw an error when used
+  return ''
+})
